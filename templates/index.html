@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real or AI Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="title-row">
+                <h1>
+                    <span class="word-1">Real</span> 
+                    <span class="word-2">or</span> 
+                    <span class="word-3">AI?</span>
+                </h1>
+            </div>
+            <p class="subtitle">Upload a photo and our AI-powered analysis will tell you if it's real or AI generated. Fast. Accurate. Easy to use.</p>
+        </header>
+
+        <main class="app-card">
+            <form id="upload-form" action="/analyze" method="POST" enctype="multipart/form-data" style="flex: 1;">
+                <div class="upload-section">
+                    <i class="fa-solid fa-image upload-icon"></i>
+                    <h2 class="upload-title">Drag & drop an image here</h2>
+                    <p class="upload-subtitle">or click to upload</p>
+                    <p class="upload-formats">Supports JPG, PNG, WEBP (Max 10MB)</p>
+                    
+                    <input type="file" id="image-input" name="image" accept="image/jpeg, image/png, image/webp" hidden>
+                    
+                    <button type="button" class="btn-upload" onclick="document.getElementById('image-input').click()">
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Image
+                    </button>
+                </div>
+            </form>
+
+            <div class="results-section">
+                <div class="results-empty" id="results-placeholder">
+                    <i class="fa-regular fa-image"></i>
+                    <h3>No image analyzed yet</h3>
+                    <p>Upload an image to see the results.</p>
+                </div>
+                
+                <ul class="metrics-list">
+                    <li class="metric-item">
+                        <i class="fa-solid fa-circle-info metric-icon"></i>
+                        <span class="metric-label">AI Generation Likelihood</span>
+                        <span class="metric-value" id="ai-likelihood">---</span>
+                    </li>
+                    <li class="metric-item">
+                        <i class="fa-solid fa-magnifying-glass metric-icon"></i>
+                        <span class="metric-label">Real Image Likelihood</span>
+                        <span class="metric-value" id="real-likelihood">---</span>
+                    </li>
+                    <li class="metric-item">
+                        <i class="fa-solid fa-box-archive metric-icon"></i>
+                        <span class="metric-label">Analysis Model</span>
+                        <span class="metric-text-value" id="model-version">MobileNetV2</span>
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <section class="features">
+            <div class="feature-item">
+                <div class="feature-icon-wrapper icon-blue">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Fast Analysis</h3>
+                <p class="feature-desc">Get results in seconds with our advanced AI models.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper icon-green">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="feature-title">High Accuracy</h3>
+                <p class="feature-desc">Detect real vs. AI images with industry-leading precision.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper icon-pink">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="feature-title">Privacy First</h3>
+                <p class="feature-desc">Your images are not stored and are analyzed securely.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon-wrapper icon-purple">
+                    <i class="fa-solid fa-desktop"></i>
+                </div>
+                <h3 class="feature-title">Works Anywhere</h3>
+                <p class="feature-desc">Use it on desktop, tablet, or mobile — anytime, anywhere.</p>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2 class="how-it-works-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon-wrapper">
+                        <div class="step-number">1</div>
+                        <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>Upload Image</h4>
+                        <p>Drag and drop or click to upload your image.</p>
+                    </div>
+                </div>
+
+                <i class="fa-solid fa-chevron-right step-arrow"></i>
+
+                <div class="step">
+                    <div class="step-icon-wrapper">
+                        <div class="step-number">2</div>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>AI Analysis</h4>
+                        <p>Our AI examines patterns, metadata, and visual details.</p>
+                    </div>
+                </div>
+
+                <i class="fa-solid fa-chevron-right step-arrow"></i>
+
+                <div class="step">
+                    <div class="step-icon-wrapper">
+                        <div class="step-number">3</div>
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <div class="step-info">
+                        <h4>Get Results</h4>
+                        <p>See if it's real or AI generated with detailed insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
